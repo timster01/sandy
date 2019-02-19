@@ -50,7 +50,7 @@ function createUserMessage(text) {
   var msgBox = createAndAppend("div", messagesList, "user_msg");
   var msg = createAndAppend("div", msgBox, "sent_msg");
   createAndAppend("p", msg, "", text);
-  createAndAppend("span", msg, "date_time", datetime.toLocaleTimeString());
+  createAndAppend("span", msg, "date_time float-right", datetime.toLocaleTimeString());
 
   messagesList.parentElement.scrollTop = messagesList.parentElement.scrollHeight;
 }
@@ -65,7 +65,7 @@ function createSandyMessage(text) {
   var msg = createAndAppend("div", msgBox, "sandy_msg");
   var msg_withd = createAndAppend("div", msg, "sandy_withd_msg");
   createAndAppend("p", msg_withd, "", text);
-  createAndAppend("span", msg_withd, "date_time", datetime.toLocaleTimeString());
+  createAndAppend("span", msg_withd, "date_time float-left", datetime.toLocaleTimeString());
 
   messagesList.parentElement.scrollTop = messagesList.parentElement.scrollHeight;
 }

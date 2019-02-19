@@ -12,7 +12,7 @@ img {
   display: inline-block;
   padding: 0 0 0 10px;
   vertical-align: top;
-  width: 92%;
+  max-width: 56%;
  }
  .sandy_withd_msg p {
   background: #ebebeb none repeat scroll 0 0;
@@ -31,7 +31,7 @@ img {
   margin: 8px 0 0;
 }
 
-.sandy_withd_msg { width: 57%;}
+.sandy_withd_msg { }
 .sent_msg p {
  background: #05728f none repeat scroll 0 0;
  border-radius: 3px;
@@ -44,5 +44,6 @@ img {
 .user_msg{ overflow:hidden; margin:26px 0 26px;}
 .sent_msg {
   float: right;
-  width: 46%;
+  max-width: 56%;
+  margin-right: 1%;
 }
