@@ -8,8 +8,14 @@ namespace SignalRChat.Hubs
     {
         public async Task SendMessage(string message)
         {
-            message = HtmlEncoder.Default.Encode(message);
-            await Clients.Caller.SendAsync("ReceiveMessage", "Hoi, dit is een response message van de server op je bericht: " + message);
+            string encodedMsg = HtmlEncoder.Default.Encode(message);
+
+            if (message == "request start message")
+            {
+                await Clients.Caller.SendAsync("ReceiveMessage", "Hoi, ik ben Sandy, de virtuele assistent van Search4Solutions. Waarmee kan ik je helpen?");
+            }
+            else
+                await Clients.Caller.SendAsync("ReceiveMessage", "Hoi, dit is een response message van de server op je bericht: " + encodedMsg);
         }
     }
 }
