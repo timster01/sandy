@@ -56,7 +56,7 @@ function createSandyMessage(text) {
 
     var img_div = createAndAppend("div", msgBox, "sandy_msg_img");
     var img = createAndAppend("img", img_div);
-    img.src = "https://ptetutorials.com/images/user-profile.png";
+    img.src = "images/sandy.png";
     img.alt = "Sandy";
 
     var msg = createAndAppend("div", msgBox, "sandy_msg");
