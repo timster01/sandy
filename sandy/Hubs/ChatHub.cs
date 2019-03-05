@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using sandy.Services;
 using sandy_iframe.Models;
 using System;
 using System.Net.Http;
@@ -12,12 +13,13 @@ namespace SignalRChat.Hubs
     public class ChatHub : Hub
     {
         private readonly IOptions<LUISConnectionStrings> LUISConfig;
+        private readonly IEmailService emailService;
 
-        public ChatHub(IOptions<LUISConnectionStrings> LUISConfig)
+        public ChatHub(IOptions<LUISConnectionStrings> LUISConfig, IEmailService emailService)
         {
             this.LUISConfig = LUISConfig;
+            this.emailService = emailService;
         }
-
 
         public async Task SendMessage(string message)
         {
@@ -27,6 +29,11 @@ namespace SignalRChat.Hubs
             if (message == "request start message")
             {
                 await Clients.Caller.SendAsync("ReceiveMessage", "Hoi, ik ben Sandy, de virtuele assistent van Search4Solutions. Waarmee kan ik je helpen?");
+            }
+            else if (message == "send mail")
+            {
+                await emailService.SendEmail("sivanduijn@gmail.com", "test", "bit test joe joe groetjes");
+                await Clients.Caller.SendAsync("ReceiveMessage", "succes");
             }
             else
             {

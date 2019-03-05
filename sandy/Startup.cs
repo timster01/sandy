@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using sandy.Models;
+using sandy.Services;
 using sandy_iframe.Models;
 using SignalRChat.Hubs;
 
@@ -35,6 +37,8 @@ namespace sandy_iframe
             services.AddSignalR();
 
             services.Configure<LUISConnectionStrings>(Configuration.GetSection("LUISConnectionStrings"));
+            services.Configure<EmailConnectionStrings>(Configuration.GetSection("EmailConnectionStrings"));
+            services.AddScoped<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
