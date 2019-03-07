@@ -8,7 +8,7 @@ $(document).ready(function () {
  
     connection.start().then(function () {
         document.getElementById("sendButton").disabled = false;
-        connection.invoke("SendMessage", "request start message").catch(function (err) {
+        connection.invoke("StartMessage").catch(function (err) {
             return console.error(err.toString());
         });
     }).catch(function (err) {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace sandy_iframe.Models
+namespace sandy.Models
 {
     public class TopScoringIntent
     {

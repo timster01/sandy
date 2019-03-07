@@ -10,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using sandy.Models;
 using sandy.Services;
-using sandy_iframe.Models;
 using SignalRChat.Hubs;
 
 namespace sandy_iframe
@@ -37,6 +36,7 @@ namespace sandy_iframe
             services.AddSignalR();
 
             services.Configure<LUISConnectionStrings>(Configuration.GetSection("LUISConnectionStrings"));
+            services.AddScoped<ILUISAPIService, LUISAPIService>();
             services.Configure<EmailConnectionStrings>(Configuration.GetSection("EmailConnectionStrings"));
             services.AddScoped<IEmailService, EmailService>();
         }

@@ -7,9 +7,10 @@ namespace sandy.Models
 {
     public class EmailConnectionStrings
     {
-        public string Email { get; set; }
+        public string SandyBotEmail { get; set; }
         public string Password { get; set; }
         public string Host { get; set; }
         public string Port { get; set; }
+        public string[] ReceiverAdresses { get; set; }
     }
 }
