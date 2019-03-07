@@ -50,8 +50,8 @@ namespace SignalRChat.Hubs
                     string question = questions[Context.ConnectionId].Item1;
                     string subject = questions[Context.ConnectionId].Item2;
                     questions.Remove(Context.ConnectionId);
-                    await Clients.Caller.SendAsync("ReceiveMessage", "Bedankt! Er zal zo snel mogelijk contact met je worden opgenomen.");
                     await emailService.SendEmail(message, "Vraag van: " + message.Substring(0, message.IndexOf('@')) + ", over: " + subject, question);
+                    await Clients.Caller.SendAsync("ReceiveMessage", "Bedankt! Er zal zo snel mogelijk contact met je worden opgenomen.");
                 }
                 else
                     await Clients.Caller.SendAsync("ReceiveMessage", "Vul alsjeblieft een correct email-adres in.");
