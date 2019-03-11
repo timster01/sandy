@@ -31,7 +31,7 @@ namespace sandy.Services
                 client.Host = emailConfig.Value.Host;
                 client.Port = int.Parse(emailConfig.Value.Port);
                 client.EnableSsl = true;
-                client.Timeout = 5000;
+                //client.Timeout = 5000;
 
                 using (var emailMessage = new MailMessage())
                 {

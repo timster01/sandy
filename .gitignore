@@ -217,3 +217,5 @@ FakesAssemblies/
 _Pvt_Extensions
 
 sandy/appsettings_with_keys\.json
+
+\.vscode/

@@ -8,9 +8,9 @@ $(document).ready(function () {
  
     connection.start().then(function () {
         document.getElementById("sendButton").disabled = false;
-        connection.invoke("StartMessage").catch(function (err) {
-            return console.error(err.toString());
-        });
+        // connection.invoke("StartMessage").catch(function (err) {
+        //     return console.error(err.toString());
+        // });
     }).catch(function (err) {
         return console.error(err.toString());
     });
