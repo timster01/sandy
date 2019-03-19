@@ -7,21 +7,23 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 </head>
 
-<div class="container mt-4">
-    <div class="row h-75 overflow-auto">
-        <div class="w-100" id="messagesList"></div>
-    </div>
-    <div class="row">
-        <hr />
-    </div>
-    <div class="form-row border-dark">
-        <div class="col-9 d-flex">
-            <input class="form-control col" type="text" id="messageInput" autofocus/>
-            <input class="btn btn-primary ml-2" type="button" id="sendButton" value="Send" />      
+<body>
+    <div class="container mt-4">
+        <div class="row h-75 overflow-auto">
+            <div class="w-100" id="messagesList"></div>
+        </div>
+        <div class="row">
+            <hr />
+        </div>
+        <div class="form-row border-dark">
+            <div class="col-11 d-flex">
+                <input class="form-control col" type="text" id="messageInput" autofocus />
+                <input class="btn btn-primary ml-2" type="button" id="sendButton" value="Send" />
+            </div>
         </div>
     </div>
-</div>
 
-<script src="~/lib/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>
-<script src="~/js/util.js"></script>
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+    <script src="~/js/util.js"></script>
+</body>
