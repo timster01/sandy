@@ -5,12 +5,6 @@ using System.Threading.Tasks;
 
 namespace sandy.Models
 {
-    public class TopScoringIntent
-    {
-        public string intent { get; set; }
-        public double score { get; set; }
-    }
-
     public class Intent
     {
         public string intent { get; set; }
@@ -20,7 +14,7 @@ namespace sandy.Models
     public class LUIS
     {
         public string query { get; set; }
-        public TopScoringIntent topScoringIntent { get; set; }
+        public Intent topScoringIntent { get; set; }
         public IList<Intent> intents { get; set; }
         public IList<object> entities { get; set; }
     }
