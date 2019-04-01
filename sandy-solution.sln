@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sandy", "sandy\sandy.csproj", "{9CBD03EA-4690-4EF0-BD55-71FC9AC471EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandy_AcceptanceTests", "Sandy_AcceptanceTests\Sandy_AcceptanceTests.csproj", "{855F0DD1-FF74-4BCE-AB49-C2EC6B166617}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandyAcceptanceTest", "SandyAcceptanceTest\SandyAcceptanceTest.csproj", "{D5968FAC-A0C1-4EAC-8C1E-DC534738713E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{9CBD03EA-4690-4EF0-BD55-71FC9AC471EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CBD03EA-4690-4EF0-BD55-71FC9AC471EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CBD03EA-4690-4EF0-BD55-71FC9AC471EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{855F0DD1-FF74-4BCE-AB49-C2EC6B166617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{855F0DD1-FF74-4BCE-AB49-C2EC6B166617}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{855F0DD1-FF74-4BCE-AB49-C2EC6B166617}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{855F0DD1-FF74-4BCE-AB49-C2EC6B166617}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5968FAC-A0C1-4EAC-8C1E-DC534738713E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5968FAC-A0C1-4EAC-8C1E-DC534738713E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5968FAC-A0C1-4EAC-8C1E-DC534738713E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5968FAC-A0C1-4EAC-8C1E-DC534738713E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

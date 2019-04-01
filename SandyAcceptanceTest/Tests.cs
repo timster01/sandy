@@ -17,7 +17,7 @@ namespace Sandy_AcceptanceTests
         [TestInitialize()]
         public void SetupTest()
         {
-            string appURL = "https://sandylinux-qa.azurewebsites.net";
+            string appURL = "https://sandylinux.azurewebsites.net";
 
             driver = new FirefoxDriver();
             driver.Navigate().GoToUrl(appURL);
@@ -32,12 +32,14 @@ namespace Sandy_AcceptanceTests
             string[] msgs = GetResponse("hoi");
 
             Assert.AreEqual(msgs[0], "Hallo!");
+
+            UnknownQuestionTest();
         }
 
         [TestMethod]
         public void UnknownQuestionTest()
         {
-            string[] msgs = GetResponse("Wat is de naam van mijn oma?", 4);
+            string[] msgs = GetResponse("Hoe heet ik?", 4);
 
             Assert.AreEqual(msgs[3], "Wil je een email adres opgeven?");
         }
@@ -58,7 +60,8 @@ namespace Sandy_AcceptanceTests
             Assert.AreEqual(totalMsgs, totalMsgsExpected);
 
             string[] responses = new string[nExpectedResponseMsgs];
-            for (int i = 0; i < responses.Length; i++) {
+            for (int i = 0; i < responses.Length; i++)
+            {
                 IWebElement rWE = driver.FindElements(By.ClassName("sandy_incoming_msg"))[sandyMsgs + i];
                 responses[i] = rWE.FindElement(By.XPath("div[2]/div/p")).Text;
             }
