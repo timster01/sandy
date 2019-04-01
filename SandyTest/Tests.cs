@@ -6,12 +6,13 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Support.UI;
 
-namespace Sandy_Tests
+namespace Sandy_AcceptanceTests
 {
     [TestClass]
     public class SandyResponseTest
     {
         private IWebDriver driver;
+        private string appURL;
 
         [TestInitialize()]
         public void SetupTest()
