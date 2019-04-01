@@ -6,7 +6,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Support.UI;
 
-namespace Sandy_AcceptanceTests
+namespace Sandy_Tests
 {
     [TestClass]
     public class SandyResponseTest

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sandy", "sandy\sandy.csproj", "{9CBD03EA-4690-4EF0-BD55-71FC9AC471EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandyTest", "SandyTest\SandyTest.csproj", "{8A3339DD-35CA-4C65-BED2-526D533D64BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sandyTest", "SandyTest\sandyTest.csproj", "{8A3339DD-35CA-4C65-BED2-526D533D64BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
