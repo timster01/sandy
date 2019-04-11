@@ -20,10 +20,9 @@ public class SeleniumTests : IDisposable
 
 
         var options = new FirefoxOptions();
-        string geckoPath = Environment.GetEnvironmentVariable("GeckoWebDriver") + "/geckodriver.exe";
+        string geckoPath = Environment.GetEnvironmentVariable("GeckoWebDriver");
         output.WriteLine(geckoPath);
-        options.SetPreference("webdriver.gecko.driver", geckoPath);
-        driver = new FirefoxDriver(options);
+        driver = new FirefoxDriver(geckoPath);
         driver.Navigate().GoToUrl(appURL);
 
         WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
