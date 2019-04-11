@@ -219,3 +219,5 @@ _Pvt_Extensions
 sandy/appsettings_with_keys\.json
 
 \.vscode/
+
+src/Sandy/appsettings_with_keys\.json

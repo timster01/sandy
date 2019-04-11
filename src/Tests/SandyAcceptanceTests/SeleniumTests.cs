@@ -15,7 +15,7 @@ public class SeleniumTests : IDisposable
         string appURL = "https://sandylinux.azurewebsites.net";
 
         var options = new FirefoxOptions();
-        options.SetPreference("webdriver.gecko.driver", Environment.GetEnvironmentVariable("GeckoWebDriver"));
+        options.SetPreference("webdriver.gecko.driver", Environment.GetEnvironmentVariable("GeckoWebDriver") + "geckodriver.exe");
         driver = new FirefoxDriver(options);
         driver.Navigate().GoToUrl(appURL);
 
