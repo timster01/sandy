@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using Xunit.Abstractions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Firefox;   
@@ -9,15 +10,19 @@ using OpenQA.Selenium.IE;
 public class SeleniumTests : IDisposable
 {
     private IWebDriver driver;
+    private readonly ITestOutputHelper output;
 
-    public SeleniumTests()
+    public SeleniumTests(ITestOutputHelper output)
     {
+        this.output = output;
+
         string appURL = "https://sandylinux.azurewebsites.net";
 
-        Assert.Equal(Environment.GetEnvironmentVariable("GeckoWebDriver") + "geckodriver.exe", "doei");
 
         var options = new FirefoxOptions();
-        options.SetPreference("webdriver.gecko.driver", Environment.GetEnvironmentVariable("GeckoWebDriver") + "/geckodriver.exe");
+        string geckoPath = Environment.GetEnvironmentVariable("GeckoWebDriver") + "/geckodriver.exe";
+        output.WriteLine(geckoPath);
+        options.SetPreference("webdriver.gecko.driver", geckoPath);
         driver = new FirefoxDriver(options);
         driver.Navigate().GoToUrl(appURL);
 
