@@ -21,12 +21,14 @@ public class SeleniumTests : IDisposable
 
         var options = new FirefoxOptions();
         string geckoPath = Environment.GetEnvironmentVariable("GeckoWebDriver");
-        output.WriteLine(geckoPath);
-        driver = new FirefoxDriver(geckoPath);
+        //output.WriteLine(geckoPath);
+        //driver = new FirefoxDriver(geckoPath);
+        driver = new FirefoxDriver();
         driver.Navigate().GoToUrl(appURL);
 
-        WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
-        wait.Until(drvr => drvr.FindElements(By.ClassName("sandy_incoming_msg")).Count == 2);
+        //WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
+        //wait.Until(drvr => drvr.FindElements(By.ClassName("sandy_incoming_msg")).Count == 2);
+        waitUntilCountElementEquals(10, "sandy_incoming_msg", 2);
     }
 
     [Fact]
@@ -59,8 +61,9 @@ public class SeleniumTests : IDisposable
         driver.FindElement(By.Id("messageInput")).SendKeys(message);
         driver.FindElement(By.Id("sendButton")).Click();
 
-        WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
-        wait.Until(drvr => drvr.FindElements(By.ClassName("sandy_incoming_msg")).Count >= totalMsgsExpected);
+        //WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
+        //wait.Until(drvr => drvr.FindElements(By.ClassName("sandy_incoming_msg")).Count >= totalMsgsExpected);
+        waitUntilCountElementEquals(10, "sandy_incoming_msg", totalMsgsExpected);
 
         // test if we received the expected amount of response messages
         int totalMsgs = driver.FindElements(By.ClassName("sandy_incoming_msg")).Count;
@@ -74,6 +77,20 @@ public class SeleniumTests : IDisposable
         }
 
         return responses;
+    }
+
+    private void waitUntilCountElementEquals(int time, string element, int number) 
+    {
+        try 
+        {
+            WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
+            wait.Until(drvr => drvr.FindElements(By.ClassName(element)).Count >= number);
+        }
+        catch (Exception e)
+        {
+            driver.Quit();
+            throw new Exception("Error in waitUntil, probably a timeout", e);
+        }
     }
 
     public void Dispose()
