@@ -21,13 +21,11 @@ public class SeleniumTests : IDisposable
 
         var options = new FirefoxOptions();
         string geckoPath = Environment.GetEnvironmentVariable("GeckoWebDriver");
-        //output.WriteLine(geckoPath);
-        //driver = new FirefoxDriver(geckoPath);
-        driver = new FirefoxDriver();
+        output.WriteLine(geckoPath);                // comment out deze als je zelf wil testen
+        driver = new FirefoxDriver(geckoPath);      // deze ook
+        //driver = new FirefoxDriver();             // en gebruik deze
         driver.Navigate().GoToUrl(appURL);
 
-        //WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
-        //wait.Until(drvr => drvr.FindElements(By.ClassName("sandy_incoming_msg")).Count == 2);
         waitUntilCountElementEquals(10, "sandy_incoming_msg", 2);
     }
 
@@ -61,8 +59,6 @@ public class SeleniumTests : IDisposable
         driver.FindElement(By.Id("messageInput")).SendKeys(message);
         driver.FindElement(By.Id("sendButton")).Click();
 
-        //WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
-        //wait.Until(drvr => drvr.FindElements(By.ClassName("sandy_incoming_msg")).Count >= totalMsgsExpected);
         waitUntilCountElementEquals(10, "sandy_incoming_msg", totalMsgsExpected);
 
         // test if we received the expected amount of response messages
