@@ -1,5 +1,13 @@
-extends layout
+extends mainLayout
+
+block stylesheets
+  link(rel='stylesheet', href='/css/index.css')
+
+block scripts
+  script(src="/js/chatHandler.js")
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Welcome to #{chatbotName}, your personal assistant.
+  ul(id="chatfield")
+  input(type="text" id="userInputField" name="userInputField" placeholder="" onkeyup="trySubmitUserText(event)")
+  input(type="button" id="userSubmitText" name="userSubmitText" value="Send" onclick="submitUserText()")

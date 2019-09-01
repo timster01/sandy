@@ -1,41 +1,49 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const logger = require('morgan');
+const httpError = require('http-errors');
+const express = require("express")
+const path = require('path')
+const app = express()
+const port = 8000
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const chatbot = require('./private/chatbot/chatbot')
 
-var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
+app.set('view engine', 'pug') //Specify and load view engine
+app.set('views', path.join(__dirname, 'views')) //Declare views folder
+app.use(express.static(path.join(__dirname, 'public'))) //Declare public folder
+app.use(express.urlencoded({ extended: false })); // Parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.json()); // Parse JSON bodies (as sent by API clients)
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//Middleware for catching server errors
+app.use(function (request, response, next) {
+  if (!request.user) {
+    return next(httpError(500))
+  }
+  next()
+})
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+//Middleware for error handing
+app.use(function (error, request, response, next) {
+  //Set locals, only providing error in development
+  response.locals.message = error.message;
+  response.locals.error = request.app.get('env') === 'development' ? error : {};
+
+  //Render the error page
+  response.status(error.status || 500);
+  response.render('error');
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.get('/', function (request, response) {
+  response.render('index', { chatbotName: chatbot.chatbotName })
+})
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+app.post('/api/chatbot', function (request, response) {
+  console.log("Message received: " + request.body.message)
+
+  let answer = chatbot.parseMessage(request.body.message)
+  response.json({ message: answer })
+})
+
+app.listen(port, () => {
+  console.log(`Listening to requests on port: ` + port)
 });
-
-module.exports = app;

@@ -1,0 +1,15 @@
+h1{
+    color:	#008000
+}
+
+#chatfield{
+    height: 200px;
+    width: 400px;
+    overflow: scroll;
+    border: 1px solid #c20000;
+    list-style-type: none;
+}
+
+#chatfield li p{
+    margin: 1px;
+}
