@@ -14,14 +14,6 @@ app.use(express.urlencoded({ extended: false })); // Parse URL-encoded bodies (a
 app.use(express.json()); // Parse JSON bodies (as sent by API clients)
 app.use(logger('dev'));
 
-//Middleware for catching server errors
-app.use(function (request, response, next) {
-  if (!request.user) {
-    return next(httpError(500))
-  }
-  next()
-})
-
 //Middleware for error handing
 app.use(function (error, request, response, next) {
   //Set locals, only providing error in development
@@ -31,10 +23,10 @@ app.use(function (error, request, response, next) {
   //Render the error page
   response.status(error.status || 500);
   response.render('error');
-});
+})
 
 app.get('/', function (request, response) {
-  response.render('index', { chatbotName: chatbot.chatbotName })
+  response.render('index', { chatbotName: chatbot.getName() })
 })
 
 app.post('/api/chatbot', function (request, response) {
@@ -46,4 +38,4 @@ app.post('/api/chatbot', function (request, response) {
 
 app.listen(port, () => {
   console.log(`Listening to requests on port: ` + port)
-});
+})

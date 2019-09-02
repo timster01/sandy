@@ -3,7 +3,7 @@ const ChatContext = require('./chatContext.js')
 class GreetingsContext extends ChatContext {
     constructor() {
         super()
-        this.triggerStrings = [["hi", "hoi", "hey", "hallo"]]
+        this.triggerStrings = [["hi", "hoi", "hey", "hallo", "hello"]]
         this.positiveWords = ["good", "well", "ok"]
         this.negativeWords = ["bad", "sad", "blah"]
         this.reverse = "not"

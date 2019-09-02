@@ -1,4 +1,5 @@
 const botName = "Sandy"
+const utils = require('../utils.js')
 const GreetingsContext = require('./greetingsContext.js')
 const SendMailContext = require('./sendMailContext.js')
 
@@ -10,9 +11,9 @@ let contexts = [
 let currentContext = undefined
 
 exports.parseMessage = function (sentence) {
-    let words = sentence.trim().split(" ")
+    let words = utils.splitByWhitespaces(sentence)
 
-    if (currentContext != undefined && words.length == 1 && words[0].trim() == "stop") {
+    if (currentContext != undefined && words.length == 1 && words[0] == "stop") {
         currentContext = undefined
         return botName + ": Ok, what else can I help you with?"
     } else {
@@ -38,5 +39,6 @@ exports.parseMessage = function (sentence) {
     }
 }
 
-
-
+exports.getName = function(){
+    return botName
+}
