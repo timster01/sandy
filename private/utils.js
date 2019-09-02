@@ -4,10 +4,9 @@ exports.isValidEmail = function (mail) {
 }
 
 exports.splitByWhitespaces = function (sentence){
-    return sentence.match(/\b(\w+)'?(\w+)?\b/g)
+    return sentence.match(/\S+/g) 
 }
 
 exports.includesStringInsensitive = function (stringArray, string){
-    let regex = new RegExp(stringArray.join("|"), "i")
-    return regex.test(string)
+    //The standard .includes() method but case insensitive.
 }

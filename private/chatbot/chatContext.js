@@ -15,17 +15,18 @@ class ChatContext {
         let validIfCases = 0
         let ifCases = 0
 
+        //"includes" checks for case sensitivity. This should be changed later to be ignored.
         for (let i = 0; i < this.triggerStrings.length; i++) {
             let trigger = this.triggerStrings[i]
             if (Array.isArray(trigger)) {
                 ifCases++
                 for (let j = 0; j < trigger.length; j++) {
-                    if (utils.includesStringInsensitive(words, trigger[j])){
+                    if (words.includes(trigger[j])){
                         validIfCases++
                         break
                     }
                 }
-            } else if (!utils.includesStringInsensitive(words, trigger)) {
+            } else if (!words.includes(trigger)) {
                 return false
             }
         }
