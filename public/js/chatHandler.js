@@ -1,4 +1,3 @@
-let SenderEnum = Object.freeze({ "client": 1, "server": 2 })
 var socket = undefined
 
 $(document).ready(() => {
@@ -7,9 +6,9 @@ $(document).ready(() => {
     socket.on('connect', () => {
         console.log("Socket succesfully created: " + socket.id)
 
-        socket.on("sendMessage-" + socket.id, (data) => {
+        socket.on("sendMessage", (data) => {
             console.log(data)
-            addChatline(SenderEnum.server, data.message)
+            createSandyMessage(data.message)
         })
     })
 })
@@ -26,24 +25,40 @@ function submitUserText() {
         return
     }
 
-    let inputField = document.getElementById('userInputField')
+    let inputField = document.getElementById('messageInput')
     let message = inputField.value
     if (message.trim() == "") {
         return
     }
     inputField.value = ""
-
-    addChatline(SenderEnum.client, message)
+    createUserMessage(message)
     socket.emit('sendMessage-' + socket.id, {message: message})
 }
 
-function addChatline(sender, message) {
-    if (sender == SenderEnum.client) {
-        message = "You: " + message
-    }
+function createUserMessage(text) {
+    let messagesList = document.getElementById("messagesList")
+    let msgBox = createAndAppend("div", messagesList, "user_msg");
+    let msg = createAndAppend("div", msgBox, "sent_msg");
+    fillMessage(msg, text, "right");
+}
 
-    let chat = document.getElementById("chatfield")
-    let htmlString = "<li><p>" + message + "</p></li>"
-    chat.insertAdjacentHTML('beforeend', htmlString)
-    chat.scrollTop = chat.scrollHeight
+function createSandyMessage(text) {
+    let messagesList = document.getElementById("messagesList")
+    let msgBox = createAndAppend("div", messagesList, "sandy_incoming_msg");
+
+    let img_div = createAndAppend("div", msgBox, "sandy_msg_img");
+    let img = createAndAppend("img", img_div);
+    img.src = "images/sandy.png";
+    img.alt = "Sandy";
+
+    let msg = createAndAppend("div", msgBox, "sandy_msg");
+    let msg_withd = createAndAppend("div", msg, "sandy_withd_msg");
+    fillMessage(msg_withd, text, "left");
+}
+
+function fillMessage(container, text, side) {
+    createAndAppend("p", container, "", text);
+    createAndAppend("span", container, "date_time float-" + side, getTime());
+    let messagesList = document.getElementById("messagesList")
+    messagesList.parentElement.scrollTop = messagesList.parentElement.scrollHeight;
 }

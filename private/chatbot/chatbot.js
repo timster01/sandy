@@ -9,10 +9,13 @@ class Chatbot {
 
     parseMessage(sentence) {
         let words = utils.splitByWhitespaces(sentence)
+        let result = {}
+        result.success = true
 
         if (this.currentContext != undefined && words.length == 1 && words[0] == "stop") {
             this.currentContext = undefined
-            return botName + ": Ok, what else can I help you with?"
+            result.response = "Ok, what else can I help you with?"
+            return result
         } else {
             if (this.currentContext == undefined) {
                 for (let i = 0; i < Chatbot.registeredContexts.length; i++) {
@@ -28,18 +31,20 @@ class Chatbot {
         }
 
         if (this.currentContext == undefined) {
-            return Chatbot.botName + ": Sorry, I did not understand that."
+            result.success = false
+            result.message = "Sorry, I did not understand that. Let me ask a human..."
+            return result
         } else {
             let response = this.currentContext.process(words)
             if (this.currentContext.finished) {
                 this.currentContext = undefined
             }
-            return Chatbot.botName + ": " + response
+            result.message = response
+            return result
         }
     }
 }
 
-Chatbot.botName = "Sandy"
 Chatbot.registeredContexts = [
     new GreetingsContext(),
     new SendMailContext()
