@@ -50,12 +50,15 @@ function processPOSTRequest(request, response, io, connectedClients) {
                     return true
                 }
 
-                let username = slackWorkspaceMembers[payload.event.user]
-                if (username == undefined) {
-                    username = "Human"
-                    slackBot.retrieveWorkspaceUsers()
+                let user = slackWorkspaceMembers[payload.event.user]
+                if (user == undefined) {
+                    user.name = "Human"
+                    user.avatar = "images/sandy.png"
                 }
-                connectedClients[socketId].socket.emit('sendMessage', { message: username + ": " + payload.event.text })
+                connectedClients[socketId].socket.emit('sendMessage', { 
+                    user : user,
+                    message: payload.event.text 
+                })
             }
         }
         return true
@@ -65,6 +68,7 @@ function processPOSTRequest(request, response, io, connectedClients) {
 
 function deleteSlackChatRecord(socketId) {
     if(slackChats[socketId]){
+        console.log("Deleted slack chat")
         delete slackChats[socketId]
         slackChatsCount--
     }
@@ -73,6 +77,7 @@ function deleteSlackChatRecord(socketId) {
 
 function insertSlackChatRecord(socketId) {
     if (slackChats[socketId] == undefined) {
+        console.log("Added slack chat")
         slackChats[socketId] = ""
         slackChatsCount++
     } else {
@@ -110,7 +115,7 @@ async function sendBotMessageToSlack(socketId, message) {
         })
 }
 
-async function retrieveWorkspaceUsers() {
+async function retrieveWorkspaceUsersData() {
     const options = {
         uri: 'https://slack.com/api/users.list',
         method: 'GET',
@@ -122,12 +127,16 @@ async function retrieveWorkspaceUsers() {
     request(options)
         .then(function (data) {
             if (!data.ok || data.ok != true) {
-                console.log("Error retrieving users")
+                console.log("Error retrieving users: " + JSON.stringify(data))
                 return
             }
-
+            console.log("Succesfully retrieved workspace data of " + data.members.length + " members!")
             for (let i = 0; i < data.members.length; i++) {
-                slackWorkspaceMembers[data.members[i].id] = data.members[i].real_name
+                let profile = data.members[i].profile
+                let user = {}
+                user.name = profile.real_name
+                user.avatar = profile.image_192
+                slackWorkspaceMembers[data.members[i].id] = user
             }
         })
         .catch(function (error) {
@@ -135,7 +144,7 @@ async function retrieveWorkspaceUsers() {
         })
 }
 
-module.exports.retrieveWorkspaceUsers = retrieveWorkspaceUsers
+module.exports.retrieveWorkspaceUsersData = retrieveWorkspaceUsersData
 module.exports.sendBotMessageToSlack = sendBotMessageToSlack
 module.exports.insertSlackChatRecord = insertSlackChatRecord
 module.exports.deleteSlackChatRecord = deleteSlackChatRecord

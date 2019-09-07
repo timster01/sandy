@@ -42,7 +42,10 @@ io.on('connection', (socket) => {
     console.log("Received message from " + socket.id + " with content: " + data.message)
 
     let result = connectedClients[socket.id].chatBot.parseMessage(data.message)
-    socket.emit('sendMessage', { message: result.message })
+    socket.emit('sendMessage', { 
+      user: {name: "Sandy", avatar: "images/sandy.png"},
+      message: result.message   
+    })
 
     if (!result.success) {
       slackBot.insertSlackChatRecord(socket.id)
@@ -63,5 +66,5 @@ app.post('/', function (request, response) {
 
 http.listen(port, () => {
   console.log("Listening to requests on port: " + port)
-  slackBot.retrieveWorkspaceUsers()
+  slackBot.retrieveWorkspaceUsersData()
 })

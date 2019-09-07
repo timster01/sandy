@@ -8,7 +8,7 @@ $(document).ready(() => {
 
         socket.on("sendMessage", (data) => {
             console.log(data)
-            createSandyMessage(data.message)
+            createServerMessage(data.user.name, data.user.avatar, data.message)
         })
     })
 })
@@ -39,26 +39,26 @@ function createUserMessage(text) {
     let messagesList = document.getElementById("messagesList")
     let msgBox = createAndAppend("div", messagesList, "user_msg");
     let msg = createAndAppend("div", msgBox, "sent_msg");
-    fillMessage(msg, text, "right");
+    fillMessage(msg, "You", text, "right");
 }
 
-function createSandyMessage(text) {
+function createServerMessage(name, avatar, text) {
     let messagesList = document.getElementById("messagesList")
     let msgBox = createAndAppend("div", messagesList, "sandy_incoming_msg");
 
     let img_div = createAndAppend("div", msgBox, "sandy_msg_img");
     let img = createAndAppend("img", img_div);
-    img.src = "images/sandy.png";
-    img.alt = "Sandy";
+    img.src = avatar;
+    img.alt = "avatar";
 
     let msg = createAndAppend("div", msgBox, "sandy_msg");
     let msg_withd = createAndAppend("div", msg, "sandy_withd_msg");
-    fillMessage(msg_withd, text, "left");
+    fillMessage(msg_withd, name, text, "left");
 }
 
-function fillMessage(container, text, side) {
+function fillMessage(container, name, text, side) {
+    createAndAppend("span", container, "date_time text-" + side, "<b>" + name + "</b> " + getTime());
     createAndAppend("p", container, "", text);
-    createAndAppend("span", container, "date_time float-" + side, getTime());
     let messagesList = document.getElementById("messagesList")
     messagesList.parentElement.scrollTop = messagesList.parentElement.scrollHeight;
 }

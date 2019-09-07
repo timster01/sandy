@@ -22,6 +22,10 @@ img {
   overflow-wrap: normal;
 }
 
+.sandy_incoming_msg{
+  margin:13px 0 13px
+}
+
 .date_time {
   color: #747474;
   display: block;
@@ -38,7 +42,7 @@ img {
  width:100%;
 }
 
-.user_msg{ overflow:hidden; margin:26px 0 26px;}
+.user_msg{ overflow:hidden; margin:13px 0 13px;}
 .sent_msg {
   float: right;
   max-width: 56%;
