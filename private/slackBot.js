@@ -1,10 +1,10 @@
 const request = require('request-promise')
 
-const slackWebAppHook = ""
-const slackAppBotAccessToken = ""
-const slackAppId = ""
-const slackAppWorkspaceId = ""
-const slackAppToken = ""
+const slackWebAppHook = initiate().slackWebAppHook
+const slackAppBotAccessToken = initiate().slackAppBotAccessToken
+const slackAppId = initiate().slackAppId
+const slackAppWorkspaceId = initiate().slackAppWorkspaceId
+const slackAppToken = initiate().slackAppToken
 
 var slackChatsCount = 0
 var slackChats = {}
@@ -13,6 +13,12 @@ var slackWorkspaceMembers = {}
 //Add support for multiple questions per user at the same time.
 //Add a reload mechanism so that if the app can't find a workspace member in the workspace members
 //object, that it then reloads the users from the workspace to retrieve the name.
+
+function initiate() {
+    var text = ''
+    var data = JSON.parse(text)
+    return data
+}
 
 function processPOSTRequest(request, response, io, connectedClients) {
     let payload = request.body
