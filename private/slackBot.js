@@ -1,7 +1,7 @@
 const request = require('request-promise')
 
 const slackWebAppHook = ""
-const skackAppBotAccessToken = ""
+const slackAppBotAccessToken = ""
 const slackAppId = ""
 const slackAppWorkspaceId = ""
 const slackAppToken = ""
@@ -119,7 +119,7 @@ async function retrieveWorkspaceUsersData() {
     const options = {
         uri: 'https://slack.com/api/users.list',
         method: 'GET',
-        qs: { token: skackAppBotAccessToken },
+        qs: { token: slackAppBotAccessToken },
         headers: { 'Content-type': 'application/x-www-form-urlencoded' },
         json: true
     }
