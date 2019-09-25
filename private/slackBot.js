@@ -15,7 +15,8 @@ var slackWorkspaceMembers = {}
 //object, that it then reloads the users from the workspace to retrieve the name.
 
 function initiate() {
-    var text = ''
+    const fs = require('fs')
+    var text = fs.readFileSync("secure.json")
     var data = JSON.parse(text)
     return data
 }
