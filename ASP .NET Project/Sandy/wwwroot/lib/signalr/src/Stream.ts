@@ -7,9 +7,9 @@
 // depend on RxJS in the core library, so instead we duplicate the minimum logic needed and then users can easily adapt these into
 // proper RxJS observables if they want.
 
-/** Defines the expected type for a receiver of results streamed by the server.
+/** Defines the expected type for a receiver of results streamed by the server.js.
  *
- * @typeparam T The type of the items being sent by the server.
+ * @typeparam T The type of the items being sent by the server.js.
  */
 export interface IStreamSubscriber<T> {
     /** A boolean that will be set by the {@link @aspnet/signalr.IStreamResult} when the stream is closed. */
@@ -30,7 +30,7 @@ export interface IStreamSubscriber<T> {
 
 /** Defines the result of a streaming hub method.
  *
- * @typeparam T The type of the items being sent by the server.
+ * @typeparam T The type of the items being sent by the server.js.
  */
 export interface IStreamResult<T> {
     /** Attaches a {@link @aspnet/signalr.IStreamSubscriber}, which will be invoked when new items are available from the stream.
@@ -43,7 +43,7 @@ export interface IStreamResult<T> {
 
 /** An interface that allows an {@link @aspnet/signalr.IStreamSubscriber} to be disconnected from a stream.
  *
- * @typeparam T The type of the items being sent by the server.
+ * @typeparam T The type of the items being sent by the server.js.
  */
 // @ts-ignore: We can't remove this, it's a breaking change, but it's not used.
 export interface ISubscription<T> {

@@ -270,7 +270,7 @@ var HttpConnection = /** @class */ (function () {
                         return [2 /*return*/, JSON.parse(response.content)];
                     case 5:
                         e_3 = _b.sent();
-                        this.logger.log(ILogger_1.LogLevel.Error, "Failed to complete negotiation with the server: " + e_3);
+                        this.logger.log(ILogger_1.LogLevel.Error, "Failed to complete negotiation with the server.js: " + e_3);
                         throw e_3;
                     case 6: return [2 /*return*/];
                 }

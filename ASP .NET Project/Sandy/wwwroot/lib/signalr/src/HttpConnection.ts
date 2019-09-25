@@ -244,7 +244,7 @@ export class HttpConnection implements IConnection {
 
             return JSON.parse(response.content as string) as INegotiateResponse;
         } catch (e) {
-            this.logger.log(LogLevel.Error, "Failed to complete negotiation with the server: " + e);
+            this.logger.log(LogLevel.Error, "Failed to complete negotiation with the server.js: " + e);
             throw e;
         }
     }

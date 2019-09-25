@@ -126,7 +126,7 @@ export class LongPollingTransport implements ITransport {
                     const response = await this.httpClient.get(pollUrl, pollOptions);
 
                     if (response.statusCode === 204) {
-                        this.logger.log(LogLevel.Information, "(LongPolling transport) Poll terminated by server.");
+                        this.logger.log(LogLevel.Information, "(LongPolling transport) Poll terminated by server.js.");
 
                         this.running = false;
                     } else if (response.statusCode !== 200) {
@@ -166,7 +166,7 @@ export class LongPollingTransport implements ITransport {
         } finally {
             this.logger.log(LogLevel.Trace, "(LongPolling transport) Polling complete.");
 
-            // We will reach here with pollAborted==false when the server returned a response causing the transport to stop.
+            // We will reach here with pollAborted==false when the server.js returned a response causing the transport to stop.
             // If pollAborted==true then client initiated the stop and the stop method will raise the close event after DELETE is sent.
             if (!this.pollAborted) {
                 this.raiseOnClose();
@@ -191,7 +191,7 @@ export class LongPollingTransport implements ITransport {
         try {
             await this.receiving;
 
-            // Send DELETE to clean up long polling on the server
+            // Send DELETE to clean up long polling on the server.js
             this.logger.log(LogLevel.Trace, `(LongPolling transport) sending DELETE request to ${this.url}.`);
 
             const deleteOptions: HttpRequest = {

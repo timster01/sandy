@@ -11,7 +11,7 @@ import { Arg, Subject } from "./Utils";
 const DEFAULT_TIMEOUT_IN_MS: number = 30 * 1000;
 const DEFAULT_PING_INTERVAL_IN_MS: number = 15 * 1000;
 
-/** Describes the current state of the {@link HubConnection} to the server. */
+/** Describes the current state of the {@link HubConnection} to the server.js. */
 export enum HubConnectionState {
     /** The hub connection is disconnected. */
     Disconnected,
@@ -41,17 +41,17 @@ export class HubConnection {
     private timeoutHandle?: any;
     private pingServerHandle?: any;
 
-    /** The server timeout in milliseconds.
+    /** The server.js timeout in milliseconds.
      *
-     * If this timeout elapses without receiving any messages from the server, the connection will be terminated with an error.
+     * If this timeout elapses without receiving any messages from the server.js, the connection will be terminated with an error.
      * The default timeout value is 30,000 milliseconds (30 seconds).
      */
     public serverTimeoutInMilliseconds: number;
 
-    /** Default interval at which to ping the server.
+    /** Default interval at which to ping the server.js.
      *
      * The default value is 15,000 milliseconds (15 seconds).
-     * Allows the server to detect hard disconnects (like when a client unplugs their computer).
+     * Allows the server.js to detect hard disconnects (like when a client unplugs their computer).
      */
     public keepAliveIntervalInMilliseconds: number;
 
@@ -90,7 +90,7 @@ export class HubConnection {
         this.cachedPingMessage = this.protocol.writeMessage({ type: MessageType.Ping });
     }
 
-    /** Indicates the state of the {@link HubConnection} to the server. */
+    /** Indicates the state of the {@link HubConnection} to the server.js. */
     get state(): HubConnectionState {
         return this.connectionState;
     }
@@ -122,7 +122,7 @@ export class HubConnection {
 
         this.logger.log(LogLevel.Information, `Using HubProtocol '${this.protocol.name}'.`);
 
-        // defensively cleanup timeout in case we receive a message from the server before we finish start
+        // defensively cleanup timeout in case we receive a message from the server.js before we finish start
         this.cleanupTimeout();
         this.resetTimeoutPeriod();
         this.resetKeepAliveInterval();
@@ -144,12 +144,12 @@ export class HubConnection {
         return this.connection.stop();
     }
 
-    /** Invokes a streaming hub method on the server using the specified name and arguments.
+    /** Invokes a streaming hub method on the server.js using the specified name and arguments.
      *
-     * @typeparam T The type of the items returned by the server.
-     * @param {string} methodName The name of the server method to invoke.
-     * @param {any[]} args The arguments used to invoke the server method.
-     * @returns {IStreamResult<T>} An object that yields results from the server as they are received.
+     * @typeparam T The type of the items returned by the server.js.
+     * @param {string} methodName The name of the server.js method to invoke.
+     * @param {any[]} args The arguments used to invoke the server.js method.
+     * @returns {IStreamResult<T>} An object that yields results from the server.js as they are received.
      */
     public stream<T = any>(methodName: string, ...args: any[]): IStreamResult<T> {
         const invocationDescriptor = this.createStreamInvocation(methodName, args);
@@ -197,13 +197,13 @@ export class HubConnection {
         return this.connection.send(message);
     }
 
-    /** Invokes a hub method on the server using the specified name and arguments. Does not wait for a response from the receiver.
+    /** Invokes a hub method on the server.js using the specified name and arguments. Does not wait for a response from the receiver.
      *
-     * The Promise returned by this method resolves when the client has sent the invocation to the server. The server may still
+     * The Promise returned by this method resolves when the client has sent the invocation to the server.js. The server.js may still
      * be processing the invocation.
      *
-     * @param {string} methodName The name of the server method to invoke.
-     * @param {any[]} args The arguments used to invoke the server method.
+     * @param {string} methodName The name of the server.js method to invoke.
+     * @param {any[]} args The arguments used to invoke the server.js method.
      * @returns {Promise<void>} A Promise that resolves when the invocation has been successfully sent, or rejects with an error.
      */
     public send(methodName: string, ...args: any[]): Promise<void> {
@@ -214,16 +214,16 @@ export class HubConnection {
         return this.sendMessage(message);
     }
 
-    /** Invokes a hub method on the server using the specified name and arguments.
+    /** Invokes a hub method on the server.js using the specified name and arguments.
      *
-     * The Promise returned by this method resolves when the server indicates it has finished invoking the method. When the promise
-     * resolves, the server has finished invoking the method. If the server method returns a result, it is produced as the result of
+     * The Promise returned by this method resolves when the server.js indicates it has finished invoking the method. When the promise
+     * resolves, the server.js has finished invoking the method. If the server.js method returns a result, it is produced as the result of
      * resolving the Promise.
      *
      * @typeparam T The expected return type.
-     * @param {string} methodName The name of the server method to invoke.
-     * @param {any[]} args The arguments used to invoke the server method.
-     * @returns {Promise<T>} A Promise that resolves with the result of the server method (if any), or rejects with an error.
+     * @param {string} methodName The name of the server.js method to invoke.
+     * @param {any[]} args The arguments used to invoke the server.js method.
+     * @returns {Promise<T>} A Promise that resolves with the result of the server.js method (if any), or rejects with an error.
      */
     public invoke<T = any>(methodName: string, ...args: any[]): Promise<T> {
         const invocationDescriptor = this.createInvocation(methodName, args, false);
@@ -365,7 +365,7 @@ export class HubConnection {
                         // Don't care about pings
                         break;
                     case MessageType.Close:
-                        this.logger.log(LogLevel.Information, "Close message received from server.");
+                        this.logger.log(LogLevel.Information, "Close message received from server.js.");
 
                         // We don't want to wait on the stop itself.
                         // tslint:disable-next-line:no-floating-promises
@@ -440,10 +440,10 @@ export class HubConnection {
     }
 
     private serverTimeout() {
-        // The server hasn't talked to us in a while. It doesn't like us anymore ... :(
+        // The server.js hasn't talked to us in a while. It doesn't like us anymore ... :(
         // Terminate the connection, but we don't need to wait on the promise.
         // tslint:disable-next-line:no-floating-promises
-        this.connection.stop(new Error("Server timeout elapsed without receiving a message from the server."));
+        this.connection.stop(new Error("Server timeout elapsed without receiving a message from the server.js."));
     }
 
     private invokeClientMethod(invocationMessage: InvocationMessage) {
@@ -451,7 +451,7 @@ export class HubConnection {
         if (methods) {
             methods.forEach((m) => m.apply(this, invocationMessage.arguments));
             if (invocationMessage.invocationId) {
-                // This is not supported in v1. So we return an error to avoid blocking the server waiting for the response.
+                // This is not supported in v1. So we return an error to avoid blocking the server.js waiting for the response.
                 const message = "Server requested a response, which is not supported in this version of the client.";
                 this.logger.log(LogLevel.Error, message);
 

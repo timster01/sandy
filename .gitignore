@@ -221,3 +221,7 @@ sandy/appsettings_with_keys\.json
 \.vscode/
 
 src/Sandy/appsettings_with_keys\.json
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/sandy.iml
+.idea/modules.xml

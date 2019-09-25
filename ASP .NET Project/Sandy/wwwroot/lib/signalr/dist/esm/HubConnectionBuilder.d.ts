@@ -25,7 +25,7 @@ export declare class HubConnectionBuilder {
     configureLogging(logging: LogLevel | ILogger): HubConnectionBuilder;
     /** Configures the {@link @aspnet/signalr.HubConnection} to use HTTP-based transports to connect to the specified URL.
      *
-     * The transport will be selected automatically based on what the server and client support.
+     * The transport will be selected automatically based on what the server.js and client support.
      *
      * @param {string} url The URL the connection will use.
      * @returns The {@link @aspnet/signalr.HubConnectionBuilder} instance, for chaining.

@@ -1,10 +1,10 @@
 const request = require('request-promise')
 
-const slackWebAppHook = ""
-const skackAppBotAccessToken = ""
-const slackAppId = ""
-const slackAppWorkspaceId = ""
-const slackAppToken = ""
+const slackWebAppHook = "https://hooks.slack.com/services/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"
+const skackAppBotAccessToken = "xoxb-746096425056-734714422291-Mu4SMJyI5xiQSnQCwprwPIGQ"
+const slackAppId = "AMY30ADHB"
+const slackAppWorkspaceId = "TMY2UCH1N"
+const slackAppToken = "8TX7DL9L0Yw39FNOMClFFEj0"
 
 var slackChatsCount = 0
 var slackChats = {}

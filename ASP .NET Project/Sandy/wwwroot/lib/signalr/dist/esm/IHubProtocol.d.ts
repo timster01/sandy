@@ -67,7 +67,7 @@ export interface StreamItemMessage extends HubInvocationMessage {
     readonly type: MessageType.StreamItem;
     /** The invocation ID. */
     readonly invocationId: string;
-    /** The item produced by the server. */
+    /** The item produced by the server.js. */
     readonly item?: any;
 }
 /** A hub message representing the result of an invocation. */
@@ -114,7 +114,7 @@ export interface CancelInvocationMessage extends HubInvocationMessage {
 }
 /** A protocol abstraction for communicating with SignalR Hubs.  */
 export interface IHubProtocol {
-    /** The name of the protocol. This is used by SignalR to resolve the protocol between the client and server. */
+    /** The name of the protocol. This is used by SignalR to resolve the protocol between the client and server.js. */
     readonly name: string;
     /** The version of the protocol. */
     readonly version: number;

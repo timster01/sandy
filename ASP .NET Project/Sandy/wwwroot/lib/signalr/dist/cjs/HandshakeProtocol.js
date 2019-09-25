@@ -45,7 +45,7 @@ var HandshakeProtocol = /** @class */ (function () {
         var messages = TextMessageFormat_1.TextMessageFormat.parse(messageData);
         var response = JSON.parse(messages[0]);
         if (response.type) {
-            throw new Error("Expected a handshake response from the server.");
+            throw new Error("Expected a handshake response from the server.js.");
         }
         responseMessage = response;
         // multiple messages could have arrived with handshake

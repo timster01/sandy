@@ -59,6 +59,7 @@ app.get('/', function (request, response) {
 })
 
 app.post('/', function (request, response) {
+  console.log(response);
   if (!slackBot.processPOSTRequest(request, response, io, connectedClients)) {
     console.log("Received POST request from unknown source. Data: " + JSON.stringify(request.body))
   }
