@@ -6,7 +6,6 @@ const slackAppId = initiate().slackAppId
 const slackAppWorkspaceId = initiate().slackAppWorkspaceId
 const slackAppToken = initiate().slackAppToken
 
-
 var slackChatsCount = 0
 var slackChats = {}
 var slackWorkspaceMembers = {}
