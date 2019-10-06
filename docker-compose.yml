@@ -2,8 +2,7 @@ version: '3'
 
 services:
   app:
-    build: .
-    command: node app.js
+    build: . 
     container_name: sandy_container
     environment:
       - THISAPP="http://localhost"
