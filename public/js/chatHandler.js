@@ -1,7 +1,7 @@
 var socket = undefined
 
 $(document).ready(() => {
-    socket = io.connect(process.env.THISAPP + ":" + process.env.PORT) //must be changed to docker container adress for production
+    socket = io.connect("http://localhost:8000") //socket = io.connect(process.env.THISAPP + ":" + process.env.PORT)
 
     socket.on('connect', () => {
         console.log("Socket succesfully created: " + socket.id)
