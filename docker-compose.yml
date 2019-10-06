@@ -8,4 +8,4 @@ services:
       - THISAPP="http://localhost"
       - PORT=8000
     ports:
-      - 8000:8000
+      - 8000:8000 #exposes correct ports
