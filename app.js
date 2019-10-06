@@ -5,7 +5,7 @@ const path = require('path')
 const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
-const port = process.env.port
+const port = process.env.PORT
 
 const Chatbot = require('./private/chatbot/chatbot.js')
 const slackBot = require('./private/slackBot.js')

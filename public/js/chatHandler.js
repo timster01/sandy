@@ -1,7 +1,7 @@
 var socket = undefined
 
 $(document).ready(() => {
-    socket = io.connect(process.env.thisapp + ":" + process.env.port) //must be changed to docker container adress for production
+    socket = io.connect(process.env.THISAPP + ":" + process.env.PORT) //must be changed to docker container adress for production
 
     socket.on('connect', () => {
         console.log("Socket succesfully created: " + socket.id)
