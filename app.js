@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
 })
 
 app.get('/', function (request, response) {
-  response.render('index')
+  response.render('index', {cache: true})
 })
 
 app.post('/', function (request, response) {
