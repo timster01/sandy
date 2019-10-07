@@ -15,5 +15,11 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+ARG applocation="http://localhost"
+ARG appport=8000
+
+ENV THISAPP=${applocation}
+ENV PORT=${appport}
+
 EXPOSE 8000
-CMD [ "node", "app.js" ]
+CMD node app.js
