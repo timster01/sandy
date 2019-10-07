@@ -1,7 +1,8 @@
+const config = require('../../config')
 var socket = undefined
 
 $(document).ready(() => {
-    socket = io.connect("http://localhost:8000") //socket = io.connect(process.env.THISAPP + ":" + process.env.PORT)
+    socket = io.connect(config.applocation + ":" + config.port)//socket = io.connect("http://localhost:8000")
 
     socket.on('connect', () => {
         console.log("Socket succesfully created: " + socket.id)

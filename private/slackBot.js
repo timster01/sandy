@@ -1,10 +1,11 @@
+const config = require('../config')
 const request = require('request-promise')
 
-const slackWebAppHook = initiate().slackWebAppHook
-const slackAppBotAccessToken = initiate().slackAppBotAccessToken
-const slackAppId = initiate().slackAppId
-const slackAppWorkspaceId = initiate().slackAppWorkspaceId
-const slackAppToken = initiate().slackAppToken
+const slackWebAppHook = config.slackWebAppHook //initiate().slackWebAppHook
+const slackAppBotAccessToken = config.slackAppBotAccessToken //initiate().slackAppBotAccessToken
+const slackAppId = config.slackAppId //initiate().slackAppId
+const slackAppWorkspaceId = config.slackAppWorkspaceId //initiate().slackAppWorkspaceId
+const slackAppToken = config.slackAppToken //initiate().slackAppToken
 
 var slackChatsCount = 0
 var slackChats = {}
