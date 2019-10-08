@@ -1,11 +1,11 @@
 const config = require('../config')
 const request = require('request-promise')
 
-const slackWebAppHook = config.slackWebAppHook //initiate().slackWebAppHook
-const slackAppBotAccessToken = config.slackAppBotAccessToken //initiate().slackAppBotAccessToken
-const slackAppId = config.slackAppId //initiate().slackAppId
-const slackAppWorkspaceId = config.slackAppWorkspaceId //initiate().slackAppWorkspaceId
-const slackAppToken = config.slackAppToken //initiate().slackAppToken
+const slackWebAppHook = config.slackWebAppHook
+const slackAppBotAccessToken = config.slackAppBotAccessToken
+const slackAppId = config.slackAppId
+const slackAppWorkspaceId = config.slackAppWorkspaceId
+const slackAppToken = config.slackAppToken
 
 var slackChatsCount = 0
 var slackChats = {}
@@ -15,12 +15,6 @@ var slackWorkspaceMembers = {}
 //Add a reload mechanism so that if the app can't find a workspace member in the workspace members
 //object, that it then reloads the users from the workspace to retrieve the name.
 
-function initiate() {
-    const fs = require('fs')
-    var text = fs.readFileSync("secure.json")
-    var data = JSON.parse(text)
-    return data
-}
 
 function processPOSTRequest(request, response, io, connectedClients) {
     let payload = request.body

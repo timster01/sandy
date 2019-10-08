@@ -21,5 +21,7 @@ ARG appport=8000
 ENV THISAPP=${applocation}
 ENV PORT=${appport}
 
+RUN node clientCodeBuild.js
+
 EXPOSE 8000
 CMD node app.js
