@@ -15,12 +15,6 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-ARG applocation="http://localhost"
-ARG appport=8000
-
-ENV THISAPP=${applocation}
-ENV PORT=${appport}
-
 RUN node clientCodeBuild.js
 
 EXPOSE 8000
