@@ -17,5 +17,5 @@ COPY . .
 
 RUN node clientCodeBuild.js
 
-EXPOSE 8000
+EXPOSE ${PORT}
 CMD node app.js

@@ -1,9 +1,9 @@
-version: '3'
+version: '3.7'
 
 services:
   app:
     build: . 
     container_name: sandy_container
-    env_file: environment.env
+    #env_file: environment.env
     ports:
-      - 8000:8000 #exposes correct ports
+      - ${PORT}:${PORT} #exposes correct ports
