@@ -4,9 +4,6 @@ services:
   app:
     build:
       context: .
-      args:
-        - THISAPP=${THISAPP}
-        - PORT=${PORT}
     container_name: sandy_container
     environment:
       - NODE_ENV

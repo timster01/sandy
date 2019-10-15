@@ -1,5 +1,5 @@
 module.exports = {
-    applocation: process.env.THISAPP,
+    node_env: process.env.NODE_ENV,
     port: process.env.PORT,
     slackWebAppHook: process.env.slackWebAppHook,
     slackAppBotAccessToken: process.env.slackAppBotAccessToken,

@@ -1,7 +1,7 @@
 var socket = undefined
 
 $(document).ready(() => {
-    socket = io.connect("http://localhost:8000")
+    socket = io.connect()
 
     socket.on('connect', () => {
         console.log("Socket succesfully created: " + socket.id)
