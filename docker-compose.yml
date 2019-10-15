@@ -2,8 +2,20 @@ version: '3.7'
 
 services:
   app:
-    build: . 
+    build:
+      context: .
+      args:
+        - THISAPP=${THISAPP}
+        - PORT=${PORT}
     container_name: sandy_container
-    #env_file: environment.env
+    environment:
+      - NODE_ENV
+      - THISAPP
+      - PORT
+      - slackWebAppHook
+      - slackAppBotAccessToken
+      - slackAppId
+      - slackAppWorkspaceId
+      - slackAppToken
     ports:
       - ${PORT}:${PORT} #exposes correct ports

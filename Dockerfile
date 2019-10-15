@@ -15,7 +15,12 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-RUN node clientCodeBuild.js
+ARG THISAPP
+ARG PORT
+
+#RUN node clientCodeBuild.js
+RUN sed -e s#http://localhost:8000#${THISAPP}:${PORT}#g public/js/chatHandler.js 
+#works if env var set
 
 EXPOSE ${PORT}
 CMD node app.js
