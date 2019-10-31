@@ -3,3 +3,4 @@ npm-debug.log
 ASP .NET Project
 .vs
 .vscode
+*.env

@@ -1,0 +1,33 @@
+trigger:
+- SecurityFile/Docker
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+variables:
+  imageName: 'pipelines-javascript-docker'
+
+steps:
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryEndpoint: 'Docker sandy Tim'
+    dockerComposeFile: '**/docker-compose.yml'
+    dockerComposeFileArgs: |
+      NODE_ENV=$(NODE_ENV)
+      PORT=$(PORT)
+      slackWebAppHook=$(slackWebAppHook)
+      slackAppBotAccessToken=$(slackAppBotAccessToken)
+      slackAppId=$(slackAppId)
+      slackAppWorkspaceId=$(slackAppWorkspaceId)
+      slackAppToken=$(slackAppToken)
+    action: 'Build services'
+    includeLatestTag: true
+
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryEndpoint: 'Docker sandy Tim'
+    dockerComposeFile: '**/docker-compose.yml'
+    action: 'Push services'
+    includeLatestTag: true

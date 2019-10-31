@@ -6,7 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-secure.json
+.env
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

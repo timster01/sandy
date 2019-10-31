@@ -5,7 +5,7 @@ const path = require('path')
 const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
-const port = 8000
+const port = require('./config').port
 
 const Chatbot = require('./private/chatbot/chatbot.js')
 const slackBot = require('./private/slackBot.js')
@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
 })
 
 app.get('/', function (request, response) {
-  response.render('index')
+  response.render('index', {cache: true})
 })
 
 app.post('/', function (request, response) {
