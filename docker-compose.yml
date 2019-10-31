@@ -5,6 +5,7 @@ services:
     build:
       context: .
     container_name: sandy_container
+    image: timster01/sandy
     environment:
       - NODE_ENV
       - THISAPP
