@@ -8,8 +8,6 @@ services:
     image: timster01/sandy
     environment:
       - NODE_ENV
-      - THISAPP
-      - PORT
       - slackWebAppHook
       - slackAppBotAccessToken
       - slackAppId
