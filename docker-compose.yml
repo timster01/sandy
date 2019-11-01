@@ -16,4 +16,4 @@ services:
       - slackAppWorkspaceId
       - slackAppToken
     ports:
-      - ${PORT}:${PORT} #exposes correct ports
+      - ${PORT}:8000 #exposes correct ports
