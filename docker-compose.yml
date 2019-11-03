@@ -6,6 +6,7 @@ services:
       context: .
     container_name: sandy_container
     image: timster01/sandy
+    restart: unless-stopped
     environment:
       - NODE_ENV
       - slackWebAppHook
