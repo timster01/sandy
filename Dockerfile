@@ -15,5 +15,5 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE ${PORT}
+EXPOSE 8000
 CMD node app.js
